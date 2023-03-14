@@ -1,0 +1,308 @@
+1---------- Student Validation
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Registration Form</title>
+</head>
+<body>
+<h1>Student Registration Form</h1>
+<form id="registrationForm" onsubmit="validateForm()">
+<label for="name">Name:</label>
+<input type="text" id="name" name="name" required><br><br>
+<label for="email">Email:</label>
+<input type="email" id="email" name="email" required><br><br>
+<label for="password">Password:</label>
+<input type="password" id="password" name="password"
+required><br><br>
+<label for="confirmPassword">Confirm Password:</label>
+<input type="password" id="confirmPassword"
+name="confirmPassword" required><br><br>
+<label for="phone">Phone:</label>
+<input type="tel" id="phone" name="phone" required><br><br>
+<label for="gender">Gender:</label>
+<input type="radio" id="male" name="gender" value="male">
+<label for="male">Male</label>
+<input type="radio" id="female" name="gender" value="female">
+<label for="female">Female</label>
+<input type="radio" id="other" name="gender" value="other">
+<label for="other">Other</label><br><br>
+<label for="birthdate">Date of Birth:</label>
+<input type="date" id="birthdate" name="birthdate" required><br><br>
+<input type="submit" value="Submit">
+</form>
+<script>
+function validateForm() {
+var name = document.getElementById("name").value;
+var email = document.getElementById("email").value;
+var password = document.getElementById("password").value;
+var confirmPassword =
+document.getElementById("confirmPassword").value;
+var phone = document.getElementById("phone").value;
+var gender =
+document.querySelector('input[name="gender"]:checked');
+var birthdate = document.getElementById("birthdate").value;
+// Name Validation
+if (name == "") {
+alert("Name must be filled out");
+return false;
+}
+// Email Validation
+if (email == "") {
+alert("Email must be filled out");
+return false;
+}
+// Password Validation
+if (password == "") {
+alert("Password must be filled out");
+return false;
+}
+if (password != confirmPassword) {
+alert("Passwords do not match");
+return false;
+}
+// Phone Validation
+if (phone == "") {
+alert("Phone number must be filled out");
+return false;
+}
+if (phone.length != 10) {
+alert("Invalid phone number");
+return false;
+}
+// Gender Validation
+if (!gender) {
+alert("Gender must be selected");
+return false;
+}
+// Birthdate Validation
+var currentDate = new Date();
+var userDate = new Date(birthdate);
+var age = (currentDate.getTime() - userDate.getTime()) / (1000 * 60 *
+60 * 24 * 365);
+if (age < 18) {
+alert("You must be at least 18 years old to register");
+return false;
+}
+alert('Validated Successfully')
+return true;
+}
+</script>
+</body>
+</html>
+
+
+4-------- Multiline text
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Multi-line Text Analysis</title>
+</head>
+<body>
+<h1>Multi-line Text Analysis</h1>
+<form>
+<label for="text-input">Enter text:</label><br>
+<textarea id="text-input" name="text-input" rows="4"
+cols="50"></textarea><br>
+<button type="submit">Analyze Text</button>
+</form>
+<script>
+const form = document.querySelector('form');
+const textInput = document.getElementById('text-input');
+form.addEventListener('submit', (event) => {
+event.preventDefault();
+const text = textInput.value;
+const numChars = text.length;
+const numLines = text.split(/\r?\n/).length;
+const numWords = text.trim().split(/\s+/).length;
+const message = `Number of characters: ${numChars}\nNumber of
+lines: ${numLines}\nNumber of words: ${numWords}`;
+alert(message);
+});
+</script>
+</body>
+</html>
+
+
+
+6---------Overlay
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Image Overlay Example</title>
+<style>
+/* Style for the overlay */
+.overlay {
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+display: flex;
+align-items: center;
+justify-content: center;
+color: white;
+font-size: 3rem;
+text-align: center;
+}
+/* Style for the image */
+.image {
+width: 100%;
+height: auto;
+display: block;
+}
+/* Style for the container */
+.container {
+position: relative;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<img class="image" src="image.jpg" alt="Your Image">
+<div class="overlay">
+<p>Hello World</p> // any text
+</div>
+</div>
+</body>
+</html>
+
+
+7----- Perspective transform
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Perspective Transform with Hover Animation</title>
+<style>
+.box {
+width: 200px;
+height: 200px;
+background-color: #4CAF50;
+perspective: 1000px;
+transition: transform 0.5s;
+}
+.box:hover {
+transform: rotateY(30deg);
+}
+.content {
+transform: translateZ(50px);
+text-align: center;
+color: white;
+font-size: 24px;
+}
+</style>
+</head>
+<body>
+<div class="box">
+<div class="content">
+Hover Me!
+</div>
+</div>
+</body>
+</html>
+
+
+8 ----------- Typewriter
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Typewriter Effect Animation</title>
+<style>
+/* Hide the text initially */
+.typewriter {
+overflow: hidden;
+font-size: 24px;
+font-family: monospace;
+white-space: nowrap;
+border-right: 3px solid black;
+animation: typing 1s steps(30, end) forwards;
+}
+/* Typing animation */
+@keyframes typing {
+from {
+width: 0;
+}
+to {
+width: 100%;
+}
+}
+</style>
+</head>
+<body>
+<div class="typewriter" id="typewriter">Hello, World!</div>
+<script>
+// Get the element that displays the text
+const typewriter = document.getElementById('typewriter');
+// Get the text to be displayed
+const text = typewriter.innerHTML;
+// Clear the text from the element
+typewriter.innerHTML = '';
+// Set up a loop to animate the text
+let i = 0;
+function type() {
+if (i < text.length) {
+typewriter.innerHTML += text.charAt(i);
+i++;
+setTimeout(type, 50);
+}
+}
+// Start the animation
+type();
+</script>
+</body>
+</html>
+
+10 ------ Underline effect on hover
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Underline Effect on Hover</title>
+<style>
+/* style for the link */
+a {
+text-decoration: none;
+position: relative;
+color: #000;
+}
+/* style for the underline */
+a::before {
+content: "";
+position: absolute;
+width: 100%;
+height: 2px;
+bottom: 0;
+left: 0;
+background-color: #000;
+visibility: hidden;
+transform: scaleX(0);
+transition: all 0.3s ease-in-out 0s;
+}
+/* hover style for the underline */
+a:hover::before {
+visibility: visible;
+transform: scaleX(1);
+}
+</style>
+</head>
+<body>
+<h1>
+<a href="#">Hover over me!</a>
+</h1>
+</body>
+</html>
+
+
+
+
+
+
+
