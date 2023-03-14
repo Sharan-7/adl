@@ -1,0 +1,71 @@
+2 -- all combinations
+
+function generateCombinations(str) {
+let result = [];
+for (let i = 0; i < str.length; i++) {
+for (let j = i + 1; j <= str.length; j++) {
+result.push(str.slice(i, j));
+}
+}
+return result.join(',');
+}
+// Example usage:
+console.log(generateCombinations('dog')); 
+
+
+
+3 -- alphabetical
+
+function sortAlphabetically(str) {
+// Convert string to array, sort the array alphabetically, and join back to a
+string
+return str.split('').sort().join('');
+}
+// Example usage
+var str = 'webmaster';
+var sortedStr = sortAlphabetically(str);
+console.log(sortedStr); // Output: abeemrstw
+
+
+5 -- type
+
+function getType(val) {
+return typeof val;
+}
+// Example usage
+console.log(getType("Hello World")); // Output: string
+console.log(getType(42)); // Output: number
+console.log(getType(true)); // Output: boolean
+console.log(getType({})); // Output: object
+console.log(getType(function() {})); // Output: function
+console.log(getType(undefined)); // Output: undefined
+
+
+10 -- sign
+
+let num1 = 3;
+let num2 = -7;
+let num3 = 2;
+let product = num1 * num2 * num3;
+if (product > 0) {
+alert("The sign is +");
+} else if (product < 0) {
+alert("The sign is -");
+} else {
+alert("The product is 0");
+}
+
+11 -- 
+
+Write a JavaScript function to get the last day of a month.
+Test Data :
+document.write(lastday(2014,0));
+document.write(lastday(2014,1));
+document.write(lastday(2014,11));
+Output :
+31
+28
+31
+function lastday(year, month) {
+return new Date(year, month + 1, 0).getDate();
+}
